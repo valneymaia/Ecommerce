@@ -19,38 +19,21 @@ public class Cliente {
         this.nome = nome;
         this.CPF = CPF;
         this.salario = salario;
-        this.VIP = true;
+        this.VIP = false;
     }
 
     public void criarCartao() {
-        if(this.VIP) {
-            meuCartao = new CartaoVIP(nome, CPF);
+            meuCartao = new CartaoPrata(nome, CPF, salario);
             meuCartao.setNumero(567);
-            meuCartao.setLimite(salario/2);
-        }
-        else {
-            meuCartao = new CartaoPrata(nome, CPF);
-            meuCartao.setNumero(123);
-            meuCartao.setLimite(salario/10);
-        }
     }
 
-    public boolean verificar(String cpf) {
-        return (cpf.equals(this.CPF));
-    }
 
     public void comprar(List<Produto> estoque, String nome, int quantidade) {
         for(Produto produto : estoque) {
            if(produto.getNome().equals(nome)) {
                if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
+                   notaFiscal(produto, quantidade);
                    meuCartao.debitar(produto.getPreco() * quantidade);
-                   System.out.println("\n==== Nota Fiscal ====");
-                   System.out.println("Nome: " + meuCartao.getNome());
-                   System.out.println("CPF: "+ meuCartao.getCPF());
-                   System.out.println("Cartao N: " + meuCartao.getNumero());
-                   System.out.println("Valor Total: " + meuCartao.getFatura()*quantidade);
-                   System.out.println("" + produto.getNome());
-                   System.out.println("Quantidade: " + quantidade);
                    System.out.println();
                }
                else {
@@ -62,18 +45,13 @@ public class Cliente {
         System.out.println("Produto não encontrado");
     }
 
+
     public void comprar(List<Produto> estoque, int codigo, int quantidade) {
         for(Produto produto : estoque) {
             if(produto.getCodigo() == codigo) {
                 if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
+                    notaFiscal(produto, quantidade);
                     meuCartao.debitar(produto.getPreco() * quantidade);
-                    System.out.println("\n==== Nota Fiscal ====");
-                    System.out.println("Nome: " + meuCartao.getNome());
-                    System.out.println("CPF: "+ meuCartao.getCPF());
-                    System.out.println("Cartao N: " + meuCartao.getNumero());
-                    System.out.println("Valor Total: " + meuCartao.getFatura());
-                    System.out.println("" + produto.getNome());
-                    System.out.println("Quantidade: " + quantidade);
                     System.out.println();
                 }
                 else {
@@ -92,14 +70,14 @@ public class Cliente {
     }
 
     public void tornarVIP() {
-        meuCartao.setFatura(meuCartao.getFatura() + 50.0f);
-        if(isVIP()) {
-            System.out.println("Já é VIP");
+        if(!isVIP()) {
+            meuCartao = new CartaoVIP(this.nome, this.CPF, this.salario);
+            meuCartao.debitar(50.0f);
+            setVIP(true);
+            System.out.println("VIP ativado.");
         }
         else {
-            System.out.println("VIP ativado com sucesso!");
-            setVIP(true);
-            meuCartao.setLimite(salario/2-50f);
+            System.out.println("Já é VIP.");
         }
     }
 
@@ -107,10 +85,20 @@ public class Cliente {
         if (!isVIP()) {
             System.out.println("Voce já não é VIP");
         } else {
-            System.out.println("VIP cancelado com sucesso!");
+            meuCartao = new CartaoPrata(this.nome, this.CPF, this.salario);
             setVIP(false);
-            meuCartao.setLimite(salario/10);
+            System.out.println("VIP cancelado com sucesso!");
         }
+    }
+
+    public void notaFiscal(Produto produto, int quantidade) {
+        System.out.println("\n==== Nota Fiscal ====");
+        System.out.println("Nome: " + meuCartao.getNome());
+        System.out.println("CPF: "+ meuCartao.getCPF());
+        System.out.println("Cartao N: " + meuCartao.getNumero());
+        System.out.println("Valor Total: " + produto.getPreco()*quantidade);
+        System.out.println("" + produto.getNome());
+        System.out.println("Quantidade: " + quantidade);
     }
 
 
