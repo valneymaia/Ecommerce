@@ -4,17 +4,15 @@ import Dados.Cartao;
 
 public class CartaoVIP extends Cartao {
 
-    public CartaoVIP(String nome, String CPF) {
+    public CartaoVIP(String nome, String CPF, float salario) {
         super(nome, CPF);
-        //TODO Auto-generated constructor stub
+        this.setLimite(salario / 2);
     }
 
     @Override
     public void debitar(float valor) {
-        System.out.println("Produto com 20% de desconto.");
         setLimite(getLimite() - valor * 0.8f);
         setFatura(getFatura() + valor * 0.8f);
-        System.out.println("preço com desconto: " + valor* 0.8f);
     }
 
-
+}
