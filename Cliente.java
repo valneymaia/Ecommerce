@@ -19,19 +19,19 @@ public class Cliente {
         this.nome = nome;
         this.CPF = CPF;
         this.salario = salario;
-        this.VIP = false;
+        this.VIP = true;
     }
 
     public void criarCartao() {
         if(this.VIP) {
             meuCartao = new CartaoVIP(nome, CPF);
             meuCartao.setNumero(567);
-            meuCartao.setLimite(150);
+            meuCartao.setLimite(salario/2);
         }
         else {
             meuCartao = new CartaoPrata(nome, CPF);
             meuCartao.setNumero(123);
-            meuCartao.setLimite(50);
+            meuCartao.setLimite(salario/10);
         }
     }
 
@@ -43,12 +43,18 @@ public class Cliente {
         for(Produto produto : estoque) {
            if(produto.getNome().equals(nome)) {
                if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
-                   System.out.println("Produto " + produto.getNome() + " comprado em " + quantidade + " unidades. " + " No valor : " + produto.getPreco()*quantidade);
                    meuCartao.debitar(produto.getPreco() * quantidade);
-                 //  System.out.println(meuCartao.getLimite());
+                   System.out.println("\n==== Nota Fiscal ====");
+                   System.out.println("Nome: " + meuCartao.getNome());
+                   System.out.println("CPF: "+ meuCartao.getCPF());
+                   System.out.println("Cartao N: " + meuCartao.getNumero());
+                   System.out.println("Valor Total: " + meuCartao.getFatura()*quantidade);
+                   System.out.println("" + produto.getNome());
+                   System.out.println("Quantidade: " + quantidade);
+                   System.out.println();
                }
                else {
-                   System.out.println("Limite infuficiete");
+                   System.out.println("Limite insuficiente");
                }
                return;
            }
@@ -60,11 +66,18 @@ public class Cliente {
         for(Produto produto : estoque) {
             if(produto.getCodigo() == codigo) {
                 if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
-                    System.out.println("Produto " + produto.getNome() + " comprado em " + quantidade + " unidades."+" No valor : " + produto.getPreco()*quantidade);
                     meuCartao.debitar(produto.getPreco() * quantidade);
+                    System.out.println("\n==== Nota Fiscal ====");
+                    System.out.println("Nome: " + meuCartao.getNome());
+                    System.out.println("CPF: "+ meuCartao.getCPF());
+                    System.out.println("Cartao N: " + meuCartao.getNumero());
+                    System.out.println("Valor Total: " + meuCartao.getFatura());
+                    System.out.println("" + produto.getNome());
+                    System.out.println("Quantidade: " + quantidade);
+                    System.out.println();
                 }
                 else {
-                    System.out.println("Limite insuficiete");
+                    System.out.println("Limite insuficiente");
                 }
                 return;
             }
@@ -73,7 +86,7 @@ public class Cliente {
     }
 
     public void printarCartao() {
-        System.out.println(meuCartao.getLimite());
+        System.out.println("limite: " + meuCartao.getLimite());
         System.out.println(this.isVIP() + " vip");
 
     }
@@ -86,7 +99,7 @@ public class Cliente {
         else {
             System.out.println("VIP ativado com sucesso!");
             setVIP(true);
-            meuCartao.setLimite(150 - 50);
+            meuCartao.setLimite(salario/2-50f);
         }
     }
 
@@ -96,9 +109,10 @@ public class Cliente {
         } else {
             System.out.println("VIP cancelado com sucesso!");
             setVIP(false);
-            meuCartao.setLimite(50);
+            meuCartao.setLimite(salario/10);
         }
     }
+
 
     public String getNome() {
         return nome;
