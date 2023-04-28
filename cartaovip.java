@@ -1,5 +1,5 @@
 package Dados;
-
+import java.util.*;
 import Dados.Cartao;
 
 public class CartaoVIP extends Cartao {
@@ -14,6 +14,7 @@ public class CartaoVIP extends Cartao {
         System.out.println("Produto com 20% de desconto.");
         setLimite(getLimite() - valor * 0.8f);
         setFatura(getFatura() + valor * 0.8f);
+        System.out.println("preço com desconto: " + valor* 0.8f);
     }
 
-}
+
