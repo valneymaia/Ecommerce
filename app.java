@@ -55,19 +55,22 @@ public class Main{
                     System.out.println("Digite a opção desejada:\n(1) Comprar por nome\n(2) Comprar por código de barras\n");
                     int escolha2 = teclado.nextInt();
                     teclado.nextLine();
+
                     if (escolha2 == 1) {
                         System.out.print("Nome: ");
                         String nome = teclado.nextLine();
                         System.out.print("Quantidade: ");
                         int quantidade = teclado.nextInt();
                         c1.comprar(produtos, nome, quantidade);
-                    } else if (escolha2 == 2) {
+                    }
+                    else if (escolha2 == 2) {
                         System.out.print("Codigo: ");
                         int codigo = teclado.nextInt();
                         System.out.print("Quantidade: ");
                         int quantidade = teclado.nextInt();
                         c1.comprar(produtos, codigo, quantidade);
-                    } else {
+                    }
+                    else {
                         System.out.println("opçao inválida.");
                     }
                     break;
@@ -76,12 +79,13 @@ public class Main{
                     c1.printarCartao();
                     break;
                 case 3:
-                    System.out.println("desejar ser vip, pagando 50 reais e ganhando descontos? (1) sim, (2) nao?");
+                    System.out.println("desejar ser vip, pagando 40 reais e ganhando descontos? (1) sim, (2) nao?");
                     int escolha3 = teclado.nextInt();
                     teclado.nextLine();
                     if (escolha3 == 1) {
                         c1.tornarVIP();
-                    } else {
+                    }
+                    else {
                         System.out.println("opçao inválida.");
                     }
                     break;
@@ -97,3 +101,4 @@ public class Main{
             }
         } while (escolha != 5);
     }}
+
