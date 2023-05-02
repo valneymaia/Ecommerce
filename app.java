@@ -28,7 +28,7 @@ public class Main{
         c1.criarCartao();
 
         Produto sabonete = new Produto("Sabonete", 2.90f, 123);
-        Produto arroz = new Produto("Arroz branco", 4.90f, 666);
+        Produto arroz = new Produto("Arroz Branco", 4.90f, 666);
         Produto acucar = new Produto("Açucar", 3.90f, 987);
 
         produtos.add(sabonete);
@@ -40,6 +40,7 @@ public class Main{
 
         int escolha = 0;
         do {
+            System.out.println("====== MERCADO RV ======");
             System.out.println("==== MENU DE OPÇÕES ====");
             System.out.println("1. Comprar produtos");
             System.out.println("2. consultar limite");
@@ -75,7 +76,7 @@ public class Main{
                     }
                     break;
                 case 2:
-                    System.out.println("Cartao de "+ c1.getNome());
+                    System.out.println("\nCartao de "+ c1.getNome());
                     c1.printarCartao();
                     break;
                 case 3:
@@ -84,6 +85,9 @@ public class Main{
                     teclado.nextLine();
                     if (escolha3 == 1) {
                         c1.tornarVIP();
+                    }
+                    if (escolha3 == 2) {
+
                     }
                     else {
                         System.out.println("opçao inválida.");
@@ -101,4 +105,3 @@ public class Main{
             }
         } while (escolha != 5);
     }}
-
