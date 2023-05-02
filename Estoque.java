@@ -14,8 +14,9 @@ public class Estoque {
     }
 
     public void printar() {
+        System.out.println("====== LISTA DE PRODUTOS ======");
         for (Produto a : this.estoque) {
-            System.out.println("Codigo: " + a.getCodigo() + "\t" + a.getNome() +  "  \t Preço: " +a.getPreco());
+            System.out.println("Codigo: " + a.getCodigo() + "\t" + a.getNome() +  "  \tPreço: " +a.getPreco());
         }
         System.out.print("\n");
     }
