@@ -34,7 +34,7 @@ public class Cliente {
                if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
                    notaFiscal(produto, quantidade);
                    meuCartao.debitar(produto.getPreco() * quantidade);
-                   System.out.println();
+                   System.out.println("=======================\n");
                }
                else {
                    System.out.println("Limite insuficiente");
@@ -52,7 +52,7 @@ public class Cliente {
                 if(produto.getPreco() * quantidade <= meuCartao.getLimite()) {
                     notaFiscal(produto, quantidade);
                     meuCartao.debitar(produto.getPreco() * quantidade);
-                    System.out.println();
+                    System.out.println("=======================\n");
                 }
                 else {
                     System.out.println("Limite insuficiente");
@@ -65,8 +65,7 @@ public class Cliente {
 
     public void printarCartao() {
         System.out.println("limite: " + meuCartao.getLimite());
-        System.out.println(this.isVIP() + " vip");
-
+        System.out.println(this.isVIP() + " vip\n");
     }
 
     public void tornarVIP() {
@@ -92,15 +91,13 @@ public class Cliente {
     }
 
     public void notaFiscal(Produto produto, int quantidade) {
-        System.out.println("\n==== Nota Fiscal ====");
+        System.out.println("\n===== Nota Fiscal =====");
         System.out.println("Nome: " + meuCartao.getNome());
         System.out.println("CPF: "+ meuCartao.getCPF());
         System.out.println("Cartao N: " + meuCartao.getNumero());
+        System.out.println("Itens: " + quantidade + " " + produto.getNome());
         System.out.println("Valor Total: " + produto.getPreco()*quantidade);
-        System.out.println("" + produto.getNome());
-        System.out.println("Quantidade: " + quantidade);
     }
-
 
     public String getNome() {
         return nome;
