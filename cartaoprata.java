@@ -4,9 +4,9 @@ import Dados.Cartao;
 
 public class CartaoPrata extends Cartao {
 
-    public CartaoPrata(String nome, String CPF) {
+    public CartaoPrata(String nome, String CPF, float salario) {
         super(nome, CPF);
-        //TODO Auto-generated constructor stub
+        this.setLimite(salario  / 5 - getFatura());
     }
 
     @Override
