@@ -6,7 +6,7 @@ public class CartaoVIP extends Cartao {
 
     public CartaoVIP(String nome, String CPF, float salario) {
         super(nome, CPF);
-        this.setLimite(salario / 2);
+        this.setLimite(salario  / 2 - getFatura());
     }
 
     @Override
