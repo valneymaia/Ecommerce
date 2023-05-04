@@ -5,7 +5,7 @@ public abstract class Cartao {
     private String CPF;
     private int numero;
     private float limite;
-    private float fatura;
+    private static float fatura;
 
     public Cartao(String nome, String CPF) {
         this.nome = nome;
