@@ -1,4 +1,4 @@
-package Repositorio;
+package Dados;
 import Dados.Cartao;
 import Dados.CartaoPrata;
 import Dados.CartaoVIP;
@@ -8,7 +8,6 @@ import java.util.*;
 public class Cliente {
     private String nome;
     private String CPF;
-
     private float salario;
     private boolean VIP;
 
@@ -135,14 +134,6 @@ public class Cliente {
         }
     }
 
-    public void Perfil(){
-        System.out.println("=========== Perfil ===========");
-        System.out.println(""+ getNome() + "  CPF: " + getCPF());
-        printarCartao();
-        System.out.println("==============================");
-    }
-
-
 
 
 
@@ -174,12 +165,18 @@ public class Cliente {
         this.VIP = VIP;
     }
 
-
     public Cartao getMeuCartao() {
         return meuCartao;
     }
     public void setMeuCartao(Cartao meuCartao) {
         this.meuCartao = meuCartao;
+    }
+
+    public void Perfil(){
+        System.out.println("=========== Perfil ===========");
+        System.out.println(""+ getNome() + "  CPF: " + getCPF());
+        printarCartao();
+        System.out.println("==============================");
     }
 
     @Override
