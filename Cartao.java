@@ -10,7 +10,7 @@ public abstract class Cartao {
     public Cartao(String nome, String CPF) {
         this.nome = nome;
         this.CPF = CPF;
-        this.numero = 123456789;
+        this.numero = 12346789;
     }
 
     public abstract void debitar(float valor);
@@ -52,3 +52,4 @@ public abstract class Cartao {
     }
 
 }
+
