@@ -119,15 +119,3 @@ public class Main{
                 """);
     }
 }
-
-
-
-
-
- /*
-        System.out.print("Digite seu nome: ");
-        String nome = teclado.nextLine();
-
-        System.out.print("Digite seu salário: ");
-        float salario = teclado.nextFloat();
-        */
