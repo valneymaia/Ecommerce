@@ -1,6 +1,4 @@
 package Dados;
-import java.util.*;
-import Dados.Cartao;
 
 public class CartaoVIP extends Cartao {
 
