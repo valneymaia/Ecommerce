@@ -1,19 +1,15 @@
 package Dados;
-
 import Repositorio.Repositorio_Produto;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import  java.util.Scanner;
 
 public class Suporte {
 
     static Scanner teclado = new Scanner(System.in);
 
-
-    public void alterarEstoque(Repositorio_Produto estoque, List<Produto> novos) throws IOException {
+    public void alterarEstoque(Repositorio_Produto estoque) throws IOException {
         String teste = "src/Dados/senha.txt";
         BufferedReader reader = new BufferedReader(new FileReader(teste));
         String senha = reader.readLine();
@@ -72,14 +68,14 @@ public class Suporte {
                         break;
 
                     case 6:
-                        if(novos.isEmpty()) {
-                            System.out.println("Vazio.");
-                            break;
-                        }
-
-                        for (Produto produto : novos) {
-                            estoque.adicionarProduto(produto);
-                        }
+                        String linha;
+                            BufferedReader file = new BufferedReader(new FileReader(
+                                    "C:\\Users\\usuario\\IdeaProjects\\Ecomerce\\src\\Dados\\produtos.csv"));
+                            while ((linha = file.readLine()) != null)  //Le uma linha
+                            {
+                                String[] novo = linha.split(","); // Separa strings por vírgula
+                                estoque.adicionarProduto(new Produto(novo[0], Float.parseFloat(novo[1]), Integer.parseInt(novo[2])));
+                            }
                         break;
 
                     default:
@@ -103,12 +99,6 @@ public class Suporte {
                 6. Adicionar por txt.
                 7. Sair\s
                 """);
-    }
-
-    private void clearBuffer() {
-        while(teclado.hasNext("\n")) {
-            teclado.next();
-        }
     }
 
 }
