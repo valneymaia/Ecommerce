@@ -1,7 +1,5 @@
 package Dados;
 
-import Dados.Cartao;
-
 public class CartaoPrata extends Cartao {
 
     public CartaoPrata(String nome, String CPF, float salario) {
