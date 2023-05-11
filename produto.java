@@ -5,7 +5,7 @@ public class Produto {
     private int codigo;
     private float preco;
 
-
+ 
     public Produto(String nome, float preco, int codigo) {
         this.nome = nome;
         this.preco = preco;
