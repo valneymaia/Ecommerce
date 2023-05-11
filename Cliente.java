@@ -1,8 +1,4 @@
 package Dados;
-import Dados.Cartao;
-import Dados.CartaoPrata;
-import Dados.CartaoVIP;
-import Dados.Produto;
 import java.util.*;
 
 public class Cliente {
@@ -24,20 +20,9 @@ public class Cliente {
 
     public void criarCartao() {
             meuCartao = new CartaoPrata(nome, CPF, salario);
-            meuCartao.setNumero(567);
+            meuCartao.setNumero(123450678);
     }
-
-
-    public void printarCartao() {
-        if(isVIP()){
-            System.out.println("Seu cartao é VIP");
-        }else{
-            System.out.println("Seu cartao é PRATA");
-        }
-        System.out.println("limite disponivel: " + meuCartao.getLimite());
-        System.out.println("Divida atual: " + meuCartao.getFatura());
-    }
-
+    
 
     public void tornarVIP() {
         if(!isVIP()) {
@@ -75,7 +60,12 @@ public class Cliente {
         System.out.println("\n===== Nota Fiscal =====");
         System.out.println("Nome: " + meuCartao.getNome());
         System.out.println("CPF: "+ meuCartao.getCPF() );
-        System.out.println("Compra:");
+        String numeroString = String.valueOf(meuCartao.getNumero());
+        if (numeroString.length() >= 4) {
+            String ultimosQuatroDigitos = numeroString.substring(numeroString.length() - 4);
+            System.out.println("Forma de pagamento: Cartao "+ultimosQuatroDigitos);
+        }
+        System.out.print("Pedido:");
     }
 
 
@@ -120,7 +110,7 @@ public class Cliente {
             produto = carrinho.getKey();
 
             System.out.print(produto.getNome() + "  \t" + " Qtd:" + " "
-                    + carrinho.getValue() +  " R$: "+ produto.getPreco() +" unidade \n");
+                    + carrinho.getValue() +  " R$: "+ produto.getPreco() +" unidade ");
             total += produto.getPreco() * carrinho.getValue();
         }
 
@@ -133,7 +123,6 @@ public class Cliente {
             System.out.println("Saldo insuficiente.");
         }
     }
-
 
 
 
@@ -172,23 +161,16 @@ public class Cliente {
         this.meuCartao = meuCartao;
     }
 
-    public void Perfil(){
-        System.out.println("=========== Perfil ===========");
-        System.out.println(""+ getNome() + "  CPF: " + getCPF());
-        printarCartao();
-        System.out.println("==============================");
-    }
-
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nome = '" + nome + '\'' +
-                ", CPF = '" + CPF + '\'' +
-                ", salario = " + salario +
-                ", VIP=" + VIP +
-                ", meuCartao = " + meuCartao +
-                '}' +
-                "Cartao nome " + meuCartao.getNome() +
-                " Cartao cpf:" + meuCartao.getCPF();
+        return isVIP() ? "Seu cartão é VIP" : "Seu cartão é PRATA" +
+                "\nlimite disponivel: " + meuCartao.getLimite()
+                + "\nDivida atual: " + meuCartao.getFatura()
+                + "\n\nCliente:" +
+                "\nnome= '" + nome + '\'' +
+                "\nCPF= " + CPF + '\'' +
+                ",\nsalario= " + salario +
+                "\nVIP= " + VIP +
+                '}';
     }
 }
